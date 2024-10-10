@@ -72,14 +72,30 @@ $productList = array_merge($foods, $toys, $beds);
                     <div class="col">
                         <div class="card">
                             <img src="<?= $productItem->image ?>" class="card-img-top" alt="<?= $productItem->name ?>">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $productItem->name ?></h5>
+                            <div class="card-body fix-height">
                                 <p class="card-text"><?= $productItem->description ?></p>
-                                <p class="card-text">Prezzo: <?= $productItem->price ?> €</p>
+                                <h5 class="card-title"><?= $productItem->name ?></h5>
                                 <p class="card-text">Categoria: <?= $productItem->category->name ?></p>
+                                <p class="card-text">Prezzo: <?= $productItem->price ?> €</p>
+                                <!-- Controllo se il prodotto è un cibo, allora ha scadenza e valore energetico e solo allora li posso mostrare in pagina -->
+                                <?php if ($productItem instanceof Food) : ?>
+                                <p class="card-text">Scadenza: <?= $productItem->expirationDate ?></p>
+                                <p class="card-text">Valore energetico: <?= $productItem->energyValue ?> Kcal</p>
+                                <!-- Controllo se il prodotto è un gioco, allora ha resistenza, materiale e livello di addestramento e solo allora li posso mostrare in pagina  -->
+                                <?php elseif ($productItem instanceof Toys) : ?>
+                                <p class="card-text">Resistenza: <?= $productItem->resistance ?></p>
+                                <p class="card-text">Materiale: <?= $productItem->material ?></p>
+                                <p class="card-text">Livello di addestramento: <?= $productItem->trainingLevel ?></p>
+                                <!-- Controllo se il prodotto è una cuccia, allora ha colore, misura e livello di comfort e solo allora li posso mostrare in pagina  -->
+                                <?php elseif ($productItem instanceof Bed) : ?>
+                                <p class="card-text">Colore: <?= $productItem->color ?></p>
+                                <p class="card-text">Misura: <?= $productItem->size ?></p>
+                                <p class="card-text">Livello di comfort: <?= $productItem->comfortLevel ?></p>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
+
                     <?php endforeach; ?>
                 </div>
             </div>
