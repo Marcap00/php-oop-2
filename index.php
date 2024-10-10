@@ -1,3 +1,15 @@
+<?php
+require_once __DIR__ . '/classes/Product.php';
+require_once __DIR__ . '/classes/Category.php';
+
+$categories = [
+    new Category('Cani'),
+    new Category('Gatti'),
+];
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
