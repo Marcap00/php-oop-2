@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/classes/Bed.php';
+require_once __DIR__ . '/classes/Food.php';
+require_once __DIR__ . '/classes/Toys.php';
 require_once __DIR__ . '/classes/Product.php';
 require_once __DIR__ . '/classes/Category.php';
 
@@ -7,6 +10,30 @@ $categories = [
     new Category('Gatti'),
 ];
 
+$typeProducts = [
+    $toys = 'Giocattolo',
+    $beds = 'Cuccia',
+    $foods = 'Cibo',
+];
+
+$foods = [
+    new Food('Purina', 10.99, $typeProducts[2], 'https://placehold.co/150?text=Product', $categories[0], '2023-12-31', 100),
+    new Food('Whiskas', 5.99, $typeProducts[2], 'https://placehold.co/150?text=Product', $categories[1], '2023-12-31', 100),
+];
+
+$toys = [
+    new Toys('Pallina', 2.99, $typeProducts[0], 'https://placehold.co/150?text=Product', $categories[0], 'Alta', 'Plastica', 'Alto'),
+    new Toys('Corda', 1.99, $typeProducts[0], 'https://placehold.co/150?text=Product', $categories[0], 'Media', 'Cotone', 'Medio'),
+    new Toys('Topo', 3.99, $typeProducts[0], 'https://placehold.co/150?text=Product', $categories[1], 'Bassa', 'Stoffa', 'Basso'),
+];
+
+$beds = [
+    new Bed('Cuccia WH', 20.99, $typeProducts[1], 'https://placehold.co/150?text=Product', $categories[0], 'Marrone', 'Media', 'Alta'),
+    new Bed('Cuccia WZ', 40.99, $typeProducts[1], 'https://placehold.co/150?text=Product', $categories[1], 'Grigio', 'Alta', 'Media'),
+];
+
+$productList = array_merge($foods, $toys, $beds);
+// var_dump($productList);
 
 ?>
 
@@ -38,79 +65,22 @@ $categories = [
         <header class="d-flex align-items-center p-2">
             <h1 class=" text-white">Boolzpet</h1>
         </header>
-        <main class="py-4">
+        <main class="py-4 overflow-scroll">
             <div class="container">
                 <div class="row row-cols-3 g-3">
+                    <?php foreach ($productList as $productItem) : ?>
                     <div class="col">
                         <div class="card">
-                            <!-- <img src="..." class="card-img-top" alt="..."> -->
+                            <img src="<?= $productItem->image ?>" class="card-img-top" alt="<?= $productItem->name ?>">
                             <div class="card-body">
-                                <h5 class="card-title">{{ message }}</h5>
-                                <p class="card-text">Some quick example text to build on the {{ message }} and make up
-                                    the
-                                    bulk of the card's content.</p>
-
+                                <h5 class="card-title"><?= $productItem->name ?></h5>
+                                <p class="card-text"><?= $productItem->description ?></p>
+                                <p class="card-text">Prezzo: <?= $productItem->price ?> €</p>
+                                <p class="card-text">Categoria: <?= $productItem->category->name ?></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card">
-                            <!-- <img src="..." class="card-img-top" alt="..."> -->
-                            <div class="card-body">
-                                <h5 class="card-title">{{ message }}</h5>
-                                <p class="card-text">Some quick example text to build on the {{ message }} and make up
-                                    the
-                                    bulk of the card's content.</p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <!-- <img src="..." class="card-img-top" alt="..."> -->
-                            <div class="card-body">
-                                <h5 class="card-title">{{ message }}</h5>
-                                <p class="card-text">Some quick example text to build on the {{ message }} and make up
-                                    the
-                                    bulk of the card's content.</p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <!-- <img src="..." class="card-img-top" alt="..."> -->
-                            <div class="card-body">
-                                <h5 class="card-title">{{ message }}</h5>
-                                <p class="card-text">Some quick example text to build on the {{ message }} and make up
-                                    the
-                                    bulk of the card's content.</p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <!-- <img src="..." class="card-img-top" alt="..."> -->
-                            <div class="card-body">
-                                <h5 class="card-title">{{ message }}</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <!-- <img src="..." class="card-img-top" alt="..."> -->
-                            <div class="card-body">
-                                <h5 class="card-title">{{ message }}</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </main>
