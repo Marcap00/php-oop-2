@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/Category.php';
+require_once __DIR__ . '/../traits/Code.php';
 class Product
 {
     private string $name;
@@ -7,6 +8,7 @@ class Product
     private string $description;
     private string $image;
     private Category $category;
+    use Code;
 
     public function __construct(string $name, float $price, string $description, string $image, Category $category)
     {
