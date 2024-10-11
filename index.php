@@ -23,11 +23,11 @@ require_once __DIR__ . '/instances/instances.php';
         integrity='sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=='
         crossorigin='anonymous' />
     <!-- Custom Css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="app/css/style.css">
     <!-- Vue Js -->
     <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <!-- Custom JS -->
-    <script defer src="js/script.js"></script>
+    <script defer src="app/js/script.js"></script>
 </head>
 
 <body>
