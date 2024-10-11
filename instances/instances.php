@@ -37,8 +37,8 @@ $rope->setCode('rp3928904782');
 $mouse->setCode('ms3928290721');
 
 // Set beds codes
-$cucciaWh->setCode('cw392867435634');
-$cucciaWz->setCode('cz3928547745');
+$cucciaWh->setCode('cw3928674');
+$cucciaWz->setCode('cz3928547');
 
 // Array of foods
 $foods = [

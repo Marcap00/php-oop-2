@@ -15,6 +15,33 @@ class Toy extends Product
         $this->trainingLevel = $trainingLevel;
     }
 
+    public function setResistance(string $resistance): void
+    {
+        if (mb_strlen($resistance)) {
+            $this->resistance = $resistance;
+        } else {
+            throw new Exception('Resistance too short');
+        }
+    }
+
+    public function setMaterial(string $material): void
+    {
+        if (mb_strlen($material)) {
+            $this->material = $material;
+        } else {
+            throw new Exception('Material too short');
+        }
+    }
+
+    public function setTrainingLevel(string $trainingLevel): void
+    {
+        if (mb_strlen($trainingLevel)) {
+            $this->trainingLevel = $trainingLevel;
+        } else {
+            throw new Exception('Training level too short');
+        }
+    }
+
     public function getResistance(): string
     {
         return $this->resistance;

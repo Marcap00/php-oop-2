@@ -17,6 +17,46 @@ class Product
         $this->image = $image;
         $this->category = $category;
     }
+
+    public function setName(string $name): void
+    {
+        if (mb_strlen($name)) {
+            $this->name = $name;
+        } else {
+            throw new Exception('Product name too short');
+        }
+    }
+    public function setPrice(float $price): void
+    {
+        if ($price > 0) {
+            $this->price = $price;
+        } else {
+            throw new Exception('Product price too low');
+        }
+    }
+    public function setDescription(string $description): void
+    {
+        if (mb_strlen($description) > 10) {
+            $this->description = $description;
+        } else {
+            throw new Exception('Product description too short');
+        }
+    }
+    public function setImage(string $image): void
+    {
+        if (mb_strlen($image)) {
+            $this->image = $image;
+        } else {
+            throw new Exception('Product image too short');
+        }
+    }
+    public function setCategory(Category $category): void
+    {
+        $this->category = $category;
+    }
+
+
+
     public function getName(): string
     {
         return $this->name;

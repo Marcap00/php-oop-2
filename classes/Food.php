@@ -14,6 +14,23 @@ class Food extends Product
         $this->energyValue = $energyValue;
     }
 
+    public function setExpirationDate(string $expirationDate): void
+    {
+        if (mb_strlen($expirationDate)) {
+            $this->expirationDate = $expirationDate;
+        } else {
+            throw new Exception('Expiration date too short');
+        }
+    }
+
+    public function setEnergyValue(float $energyValue): void
+    {
+        if ($energyValue > 0) {
+            $this->energyValue = $energyValue;
+        } else {
+            throw new Exception('Energy value too low');
+        }
+    }
 
     public function getExpirationDate(): string
     {

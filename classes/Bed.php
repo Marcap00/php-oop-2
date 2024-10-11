@@ -14,6 +14,33 @@ class Bed extends Product
         $this->comfortLevel = $comfortLevel;
     }
 
+    public function setColor(string $color): void
+    {
+        if (mb_strlen($color)) {
+            $this->color = $color;
+        } else {
+            throw new Exception('Color too short');
+        }
+    }
+
+    public function setSize(string $size): void
+    {
+        if (mb_strlen($size)) {
+            $this->size = $size;
+        } else {
+            throw new Exception('Size too short');
+        }
+    }
+
+    public function setComfortLevel(string $comfortLevel): void
+    {
+        if (mb_strlen($comfortLevel)) {
+            $this->comfortLevel = $comfortLevel;
+        } else {
+            throw new Exception('Comfort level too short');
+        }
+    }
+
     public function getColor(): string
     {
         return $this->color;

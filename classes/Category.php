@@ -10,6 +10,15 @@ class Category
     {
         $this->name = $name;
     }
+    public function setName(string $name): void
+    {
+        if (mb_strlen($name)) {
+            $this->name = $name;
+        } else {
+            throw new Exception('Category name too short');
+        }
+    }
+
     public function getName(): string
     {
         return $this->name;

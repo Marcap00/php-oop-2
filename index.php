@@ -23,11 +23,11 @@ require_once __DIR__ . '/instances/instances.php';
         integrity='sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=='
         crossorigin='anonymous' />
     <!-- Custom Css -->
-    <link rel="stylesheet" href="app/css/style.css">
+    <link rel="stylesheet" href="./app/css/style.css">
     <!-- Vue Js -->
     <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <!-- Custom JS -->
-    <script defer src="app/js/script.js"></script>
+    <script defer src="./app/js/script.js"></script>
 </head>
 
 <body>
@@ -48,13 +48,13 @@ require_once __DIR__ . '/instances/instances.php';
                                         <i
                                             class="fa-solid <?= $productItem->getCategory()->getName() === 'Cani' ? 'fa-dog' : 'fa-cat'; ?>"></i>
                                     </p>
-                                    <div class="card-title d-flex justify-content-between align-items-center">
-                                        <h5><?= $productItem->getName() ?></h5>
-                                        <span class="fs-6 card-text text-secondary">Codice:
-                                            <?= $productItem->getCode() ?></span>
-                                    </div>
+
+                                    <h5 class="card-title"><?= $productItem->getName() ?></h5>
 
                                     <p class="card-text text-secondary"><?= $productItem->getDescription() ?></p>
+                                    <p class="card-text text-secondary">
+                                        Codice: <?= $productItem->getCode() ?>
+                                    </p>
                                     <p class="card-text">Prezzo: <?= $productItem->getPrice() ?> €</p>
                                     <!-- Controllo se il prodotto è un cibo, allora ha scadenza e valore energetico e solo allora li posso mostrare in pagina -->
                                     <?php if ($productItem instanceof Food) : ?>
