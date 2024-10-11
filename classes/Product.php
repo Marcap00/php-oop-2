@@ -1,6 +1,5 @@
 <?php
-require_once __DIR__ . '/Category.php';
-require_once __DIR__ . '/../traits/Code.php';
+require_once __DIR__ . '/../requires/requires.php';
 class Product
 {
     private string $name;

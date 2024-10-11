@@ -1,64 +1,5 @@
 <?php
-require_once __DIR__ . '/classes/Bed.php';
-require_once __DIR__ . '/classes/Food.php';
-require_once __DIR__ . '/classes/Toys.php';
-require_once __DIR__ . '/classes/Product.php';
-require_once __DIR__ . '/classes/Category.php';
-
-$dogCategory = new Category('Cani');
-$catCategory = new Category('Gatti');
-
-$dogCategory->setCode('cd3954345643');
-$catCategory->setCode('cg3924535234');
-
-$categories = [
-    $dogCategory,
-    $catCategory
-];
-
-$purina = new Food('Purina', 10.99, 'Cibo per cani', 'https://placehold.co/150?text=Product', $categories[0], '2023-12-31', 100);
-$whiskas = new Food('Whiskas', 5.99, 'Cibo per gatti', 'https://placehold.co/150?text=Product', $categories[1], '2023-12-31', 100);
-
-
-$ball = new Toys('Pallina', 2.99, 'Giocattolo per cani', 'https://placehold.co/150?text=Product', $categories[0], 'Alta', 'Plastica', 'Alto');
-$rope =    new Toys('Corda', 1.99, 'Giocattolo per cani', 'https://placehold.co/150?text=Product', $categories[0], 'Media', 'Cotone', 'Medio');
-$mouse =    new Toys('Topo', 3.99, 'Giocattolo per gatti', 'https://placehold.co/150?text=Product', $categories[1], 'Bassa', 'Stoffa', 'Basso');
-
-
-
-$cucciaWh = new Bed('Cuccia WH', 20.99, 'Letto per cani', 'https://placehold.co/150?text=Product', $categories[0], 'Marrone', 'Media', 'Alta');
-$cucciaWz = new Bed('Cuccia WZ', 40.99, 'Letto per gatti', 'https://placehold.co/150?text=Product', $categories[1], 'Grigio', 'Alta', 'Media');
-
-$purina->setCode('pd3928290721');
-$whiskas->setCode('wd3928290721');
-
-$ball->setCode('bl3928290721');
-$rope->setCode('rp3928904782');
-$mouse->setCode('ms3928290721');
-
-$cucciaWh->setCode('cw392867435634');
-$cucciaWz->setCode('cz3928547745');
-
-
-$foods = [
-    $purina,
-    $whiskas
-];
-
-$toys = [
-    $ball,
-    $rope,
-    $mouse
-];
-
-$beds = [
-    $cucciaWh,
-    $cucciaWz
-];
-
-$productList = array_merge($foods, $toys, $beds);
-// var_dump($productList);
-
+require_once __DIR__ . '/instances/instances.php';
 ?>
 
 <!DOCTYPE html>
@@ -120,7 +61,7 @@ $productList = array_merge($foods, $toys, $beds);
                                         <p class="card-text">Scadenza: <?= $productItem->getExpirationDate() ?></p>
                                         <p class="card-text">Valore energetico: <?= $productItem->getEnergyValue() ?> Kcal</p>
                                         <!-- Controllo se il prodotto è un gioco, allora ha resistenza, materiale e livello di addestramento e solo allora li posso mostrare in pagina  -->
-                                    <?php elseif ($productItem instanceof Toys) : ?>
+                                    <?php elseif ($productItem instanceof Toy) : ?>
                                         <p class="card-text">Resistenza: <?= $productItem->getResistance() ?></p>
                                         <p class="card-text">Materiale: <?= $productItem->getMaterial() ?></p>
                                         <p class="card-text">Livello di addestramento: <?= $productItem->getTrainingLevel() ?>

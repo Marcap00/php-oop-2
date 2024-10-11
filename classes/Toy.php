@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/Product.php';
+require_once __DIR__ . '/../requires/requires.php';
 
-class Toys extends Product
+class Toy extends Product
 {
     private string $resistance;
     private string $material;

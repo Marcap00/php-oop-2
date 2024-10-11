@@ -1,6 +1,5 @@
 <?php
-require_once __DIR__ . '/Product.php';
-
+require_once __DIR__ . '/../requires/requires.php';
 class Bed extends Product
 {
     private string $color;

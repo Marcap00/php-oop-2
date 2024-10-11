@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../traits/Code.php';
+require_once __DIR__ . '/../requires/requires.php';
 
 class Category
 {
