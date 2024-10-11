@@ -10,26 +10,21 @@ $categories = [
     new Category('Gatti'),
 ];
 
-$typeProducts = [
-    $toys = 'Giocattolo',
-    $beds = 'Cuccia',
-    $foods = 'Cibo',
-];
 
 $foods = [
-    new Food('Purina', 10.99, $typeProducts[2], 'https://placehold.co/150?text=Product', $categories[0], '2023-12-31', 100),
-    new Food('Whiskas', 5.99, $typeProducts[2], 'https://placehold.co/150?text=Product', $categories[1], '2023-12-31', 100),
+    new Food('Purina', 10.99, 'Cibo per cani', 'https://placehold.co/150?text=Product', $categories[0], '2023-12-31', 100),
+    new Food('Whiskas', 5.99, 'Cibo per gatti', 'https://placehold.co/150?text=Product', $categories[1], '2023-12-31', 100),
 ];
 
 $toys = [
-    new Toys('Pallina', 2.99, $typeProducts[0], 'https://placehold.co/150?text=Product', $categories[0], 'Alta', 'Plastica', 'Alto'),
-    new Toys('Corda', 1.99, $typeProducts[0], 'https://placehold.co/150?text=Product', $categories[0], 'Media', 'Cotone', 'Medio'),
-    new Toys('Topo', 3.99, $typeProducts[0], 'https://placehold.co/150?text=Product', $categories[1], 'Bassa', 'Stoffa', 'Basso'),
+    new Toys('Pallina', 2.99, 'Giocattolo per cani', 'https://placehold.co/150?text=Product', $categories[0], 'Alta', 'Plastica', 'Alto'),
+    new Toys('Corda', 1.99, 'Giocattolo per cani', 'https://placehold.co/150?text=Product', $categories[0], 'Media', 'Cotone', 'Medio'),
+    new Toys('Topo', 3.99, 'Giocattolo per gatti', 'https://placehold.co/150?text=Product', $categories[1], 'Bassa', 'Stoffa', 'Basso'),
 ];
 
 $beds = [
-    new Bed('Cuccia WH', 20.99, $typeProducts[1], 'https://placehold.co/150?text=Product', $categories[0], 'Marrone', 'Media', 'Alta'),
-    new Bed('Cuccia WZ', 40.99, $typeProducts[1], 'https://placehold.co/150?text=Product', $categories[1], 'Grigio', 'Alta', 'Media'),
+    new Bed('Cuccia WH', 20.99, 'Letto per cani', 'https://placehold.co/150?text=Product', $categories[0], 'Marrone', 'Media', 'Alta'),
+    new Bed('Cuccia WZ', 40.99, 'Letto per gatti', 'https://placehold.co/150?text=Product', $categories[1], 'Grigio', 'Alta', 'Media'),
 ];
 
 $productList = array_merge($foods, $toys, $beds);
@@ -44,10 +39,15 @@ $productList = array_merge($foods, $toys, $beds);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boolzpet</title>
+
     <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
         rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css'
+        integrity='sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=='
+        crossorigin='anonymous' />
     <!-- Bootstrap 5 -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css'
         integrity='sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=='
@@ -67,35 +67,36 @@ $productList = array_merge($foods, $toys, $beds);
         </header>
         <main class="py-4 overflow-scroll">
             <div class="container">
-                <div class="row row-cols-3 g-3">
+                <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3">
                     <?php foreach ($productList as $productItem) : ?>
-                    <div class="col">
-                        <div class="card">
-                            <img src="<?= $productItem->image ?>" class="card-img-top" alt="<?= $productItem->name ?>">
-                            <div class="card-body fix-height">
-                                <p class="card-text"><?= $productItem->description ?></p>
-                                <h5 class="card-title"><?= $productItem->name ?></h5>
-                                <p class="card-text">Categoria: <?= $productItem->category->name ?></p>
-                                <p class="card-text">Prezzo: <?= $productItem->price ?> €</p>
-                                <!-- Controllo se il prodotto è un cibo, allora ha scadenza e valore energetico e solo allora li posso mostrare in pagina -->
-                                <?php if ($productItem instanceof Food) : ?>
-                                <p class="card-text">Scadenza: <?= $productItem->expirationDate ?></p>
-                                <p class="card-text">Valore energetico: <?= $productItem->energyValue ?> Kcal</p>
-                                <!-- Controllo se il prodotto è un gioco, allora ha resistenza, materiale e livello di addestramento e solo allora li posso mostrare in pagina  -->
-                                <?php elseif ($productItem instanceof Toys) : ?>
-                                <p class="card-text">Resistenza: <?= $productItem->resistance ?></p>
-                                <p class="card-text">Materiale: <?= $productItem->material ?></p>
-                                <p class="card-text">Livello di addestramento: <?= $productItem->trainingLevel ?></p>
-                                <!-- Controllo se il prodotto è una cuccia, allora ha colore, misura e livello di comfort e solo allora li posso mostrare in pagina  -->
-                                <?php elseif ($productItem instanceof Bed) : ?>
-                                <p class="card-text">Colore: <?= $productItem->color ?></p>
-                                <p class="card-text">Misura: <?= $productItem->size ?></p>
-                                <p class="card-text">Livello di comfort: <?= $productItem->comfortLevel ?></p>
-                                <?php endif; ?>
+                        <div class="col">
+                            <div role="button" class="card">
+                                <img src="<?= $productItem->image ?>" class="card-img-top" alt="<?= $productItem->name ?>">
+                                <div class="card-body fix-height">
+                                    <p class="card-text"><i
+                                            class="fa-solid <?= $productItem->category->name === 'Cani' ? 'fa-dog' : 'fa-cat'; ?>"></i>
+                                    </p>
+                                    <h5 class="card-title"><?= $productItem->name ?></h5>
+                                    <p class="card-text text-secondary"><?= $productItem->description ?></p>
+                                    <p class="card-text">Prezzo: <?= $productItem->price ?> €</p>
+                                    <!-- Controllo se il prodotto è un cibo, allora ha scadenza e valore energetico e solo allora li posso mostrare in pagina -->
+                                    <?php if ($productItem instanceof Food) : ?>
+                                        <p class="card-text">Scadenza: <?= $productItem->expirationDate ?></p>
+                                        <p class="card-text">Valore energetico: <?= $productItem->energyValue ?> Kcal</p>
+                                        <!-- Controllo se il prodotto è un gioco, allora ha resistenza, materiale e livello di addestramento e solo allora li posso mostrare in pagina  -->
+                                    <?php elseif ($productItem instanceof Toys) : ?>
+                                        <p class="card-text">Resistenza: <?= $productItem->resistance ?></p>
+                                        <p class="card-text">Materiale: <?= $productItem->material ?></p>
+                                        <p class="card-text">Livello di addestramento: <?= $productItem->trainingLevel ?></p>
+                                        <!-- Controllo se il prodotto è una cuccia, allora ha colore, misura e livello di comfort e solo allora li posso mostrare in pagina  -->
+                                    <?php elseif ($productItem instanceof Bed) : ?>
+                                        <p class="card-text">Colore: <?= $productItem->color ?></p>
+                                        <p class="card-text">Misura: <?= $productItem->size ?></p>
+                                        <p class="card-text">Livello di comfort: <?= $productItem->comfortLevel ?></p>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
                     <?php endforeach; ?>
                 </div>
             </div>
