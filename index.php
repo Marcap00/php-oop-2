@@ -69,34 +69,37 @@ $productList = array_merge($foods, $toys, $beds);
             <div class="container">
                 <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3">
                     <?php foreach ($productList as $productItem) : ?>
-                        <div class="col">
-                            <div role="button" class="card">
-                                <img src="<?= $productItem->image ?>" class="card-img-top" alt="<?= $productItem->name ?>">
-                                <div class="card-body fix-height">
-                                    <p class="card-text"><i
-                                            class="fa-solid <?= $productItem->category->name === 'Cani' ? 'fa-dog' : 'fa-cat'; ?>"></i>
-                                    </p>
-                                    <h5 class="card-title"><?= $productItem->name ?></h5>
-                                    <p class="card-text text-secondary"><?= $productItem->description ?></p>
-                                    <p class="card-text">Prezzo: <?= $productItem->price ?> €</p>
-                                    <!-- Controllo se il prodotto è un cibo, allora ha scadenza e valore energetico e solo allora li posso mostrare in pagina -->
-                                    <?php if ($productItem instanceof Food) : ?>
-                                        <p class="card-text">Scadenza: <?= $productItem->expirationDate ?></p>
-                                        <p class="card-text">Valore energetico: <?= $productItem->energyValue ?> Kcal</p>
-                                        <!-- Controllo se il prodotto è un gioco, allora ha resistenza, materiale e livello di addestramento e solo allora li posso mostrare in pagina  -->
-                                    <?php elseif ($productItem instanceof Toys) : ?>
-                                        <p class="card-text">Resistenza: <?= $productItem->resistance ?></p>
-                                        <p class="card-text">Materiale: <?= $productItem->material ?></p>
-                                        <p class="card-text">Livello di addestramento: <?= $productItem->trainingLevel ?></p>
-                                        <!-- Controllo se il prodotto è una cuccia, allora ha colore, misura e livello di comfort e solo allora li posso mostrare in pagina  -->
-                                    <?php elseif ($productItem instanceof Bed) : ?>
-                                        <p class="card-text">Colore: <?= $productItem->color ?></p>
-                                        <p class="card-text">Misura: <?= $productItem->size ?></p>
-                                        <p class="card-text">Livello di comfort: <?= $productItem->comfortLevel ?></p>
-                                    <?php endif; ?>
-                                </div>
+                    <div class="col">
+                        <div role="button" class="card">
+                            <img src="<?= $productItem->getImage() ?>" class="card-img-top"
+                                alt="<?= $productItem->getName() ?>">
+                            <div class="card-body fix-height">
+                                <p class="card-text">
+                                    <i
+                                        class="fa-solid <?= $productItem->getCategory()->getName() === 'Cani' ? 'fa-dog' : 'fa-cat'; ?>"></i>
+                                </p>
+                                <h5 class="card-title"><?= $productItem->getName() ?></h5>
+                                <p class="card-text text-secondary"><?= $productItem->getDescription() ?></p>
+                                <p class="card-text">Prezzo: <?= $productItem->getPrice() ?> €</p>
+                                <!-- Controllo se il prodotto è un cibo, allora ha scadenza e valore energetico e solo allora li posso mostrare in pagina -->
+                                <?php if ($productItem instanceof Food) : ?>
+                                <p class="card-text">Scadenza: <?= $productItem->getExpirationDate() ?></p>
+                                <p class="card-text">Valore energetico: <?= $productItem->getEnergyValue() ?> Kcal</p>
+                                <!-- Controllo se il prodotto è un gioco, allora ha resistenza, materiale e livello di addestramento e solo allora li posso mostrare in pagina  -->
+                                <?php elseif ($productItem instanceof Toys) : ?>
+                                <p class="card-text">Resistenza: <?= $productItem->getResistance() ?></p>
+                                <p class="card-text">Materiale: <?= $productItem->getMaterial() ?></p>
+                                <p class="card-text">Livello di addestramento: <?= $productItem->getTrainingLevel() ?>
+                                </p>
+                                <!-- Controllo se il prodotto è una cuccia, allora ha colore, misura e livello di comfort e solo allora li posso mostrare in pagina  -->
+                                <?php elseif ($productItem instanceof Bed) : ?>
+                                <p class="card-text">Colore: <?= $productItem->getColor() ?></p>
+                                <p class="card-text">Misura: <?= $productItem->getSize() ?></p>
+                                <p class="card-text">Livello di comfort: <?= $productItem->getComfortLevel() ?></p>
+                                <?php endif; ?>
                             </div>
                         </div>
+                    </div>
                     <?php endforeach; ?>
                 </div>
             </div>

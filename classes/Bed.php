@@ -3,9 +3,9 @@ require_once __DIR__ . '/Product.php';
 
 class Bed extends Product
 {
-    public string $color;
-    public string $size;
-    public string $comfortLevel;
+    private string $color;
+    private string $size;
+    private string $comfortLevel;
 
     public function __construct(string $name, float $price, string $description, string $image, Category $category, string $color, string $size, string $comfortLevel)
     {
@@ -13,5 +13,20 @@ class Bed extends Product
         $this->color = $color;
         $this->size = $size;
         $this->comfortLevel = $comfortLevel;
+    }
+
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    public function getSize(): string
+    {
+        return $this->size;
+    }
+
+    public function getComfortLevel(): string
+    {
+        return $this->comfortLevel;
     }
 }
